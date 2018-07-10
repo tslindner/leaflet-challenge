@@ -55,25 +55,33 @@ d3.json(queryUrl, function(response) {
     }
   });
 
-  function styleData(feature) {
-      return {
-          stroke: true,
-          color: "black",
-          weight: .25,
-          fillOpacity: .7,
-          fillColor: getColor(feature.properties.mag),
-          radius: feature.properties.mag * 4
-      };
-    }
+  // function styleData(feature) {
+  //     return {
+  //         stroke: true,
+  //         color: "black",
+  //         weight: .25,
+  //         fillOpacity: .7,
+  //         fillColor: getColor(feature.properties.mag),
+  //         radius: feature.properties.mag * 4
+  //     };
+  //   }
 
   var timeline = L.timeline(response, {
 
     getInterval: getInterval,
 
     pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng);
+        return L.circle(latlng, {
+          stroke: true,
+          color: "black",
+          weight: .25,
+          fillOpacity: .7,
+          fillColor: getColor(feature.properties.mag),
+          radius: feature.properties.mag * 60000
+        }
+      )
     },
-    style: styleData,
+    // style: styleData,
     onEachFeature: function(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.place +
     "</h3>" + new Date(feature.properties.time));
