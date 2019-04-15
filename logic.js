@@ -17,7 +17,7 @@ var darkmap = L.tileLayer(
 );
 
 
-function getColor(d) {
+function getColor(d) { 
   if (d >= 5) { return "#FF0000" } else
   if (d >= 4) { return "#FF6900" } else
   if (d >= 3) { return "#FFC100" } else
